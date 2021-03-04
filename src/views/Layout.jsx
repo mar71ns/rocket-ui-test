@@ -1,9 +1,6 @@
 import React from 'react';
 
-const Layout = ({
-                  pageName, menu, children
-                }) => {
-  return (
+const Layout = ({ pageName, menu, children }) => (
     <main className={`${pageName} layout`}>
       <nav>
         { menu }
@@ -13,7 +10,6 @@ const Layout = ({
         { children }
       </section>
     </main>
-  );
-};
+);
 
 export default Layout;

@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+
+import React, { Component, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
+import {fetchLaunchesIfNeeded} from "../actions/LaunchesActions";
 import Launch from '../components/Launch';
 
-class LaunchesView extends Component {
-  componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
-  }
+const LaunchesView = () => {
+  
+  const dispatch = useDispatch();
+  const launchCollection = useSelector(state => (state.launchCollection))
+  
+  useEffect(() => {
+    dispatch(fetchLaunchesIfNeeded({ launchCollection }));
+  }, []);
 
-  getContent() {
-    const { launchCollection } = this.props;
+  const renderContent = () => {
 
     if (!launchCollection || launchCollection.fetching) {
       return <div> LOADING </div>;
@@ -20,31 +24,26 @@ class LaunchesView extends Component {
       return <div> NO DATA </div>;
     }
 
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
-      launches.push(
-        <Launch {...{
-          key: launch.launch_id,
-          launch
-        }} />
-
-      )
-    }
-
-    return <ul>{launches}</ul>;
+    return (
+      <ul>
+        {launchCollection.launches.map((launch, index) => (
+          <Launch {...{
+            key: launch.launch_id,
+            launch
+          }} />
+        ))}
+      </ul>
+    );
   }
-
-  render() {
+  
     return (
       <div>
         <h2> SpaceX launches </h2>
-        {this.getContent()}
+        {renderContent()}
       </div>
     );
-  }
+  
 }
 
+// export default LaunchesView;
 export default ConnectedView(LaunchesView, 'launches');

@@ -1,21 +1,25 @@
-import { ACTIONS } from '../actions/Launches';
+import * as ACTIONS  from '../actions/Types';
 
 const initialState = {
   launches: [],
   fetching: false
 };
 
-const actionHandlers = {
-  [ACTIONS.REQUEST_LAUNCHES]: ({ state }) => ({
-    ...state,
-    fetching: true
-  }),
-  [ACTIONS.RECEIVE_LAUNCHES]: ({ state, action }) => ({
-    ...state,
-    fetching: false,
-    launches: [...state.launches, ...action.payload.launches]
-  })
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case ACTIONS.REQUEST_LAUNCHES:
+      return { 
+        ...state,
+        fetching: true
+      };
+    case ACTIONS.RECEIVE_LAUNCHES:
+      return { 
+        ...state,
+        fetching: false,
+        launches: [...state.launches, ...action.payload.launches]
+      }
+    default:
+      return state;
+  }
 };
 
-export default (state = initialState, action) =>
-  actionHandlers[action.type] ? actionHandlers[action.type]({ state, action }) : state;
