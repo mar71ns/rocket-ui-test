@@ -15,6 +15,7 @@ const PORT = process.env.PORT || "7357";
 
 
 module.exports = {
+  mode: "development",
   entry: [
     // POLYFILL: Set up an ES6-ish environment
     // 'babel-polyfill',  // The entire babel-polyfill
