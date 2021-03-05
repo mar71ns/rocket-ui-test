@@ -5,7 +5,6 @@ const Layout = ({ pageName, menu, children }) => (
       <nav>
         { menu }
       </nav>
-
       <section>
         { children }
       </section>

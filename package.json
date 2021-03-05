@@ -19,8 +19,11 @@
   "license": "MIT",
   "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
+    "clsx": "^1.1.1",
     "node-sass": "^5.0.0",
     "normalize.css": "^7.0.0",
     "package.json": "^2.0.1",

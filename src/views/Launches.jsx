@@ -1,5 +1,5 @@
 
-import React, { Component, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/LaunchesActions";
@@ -9,10 +9,15 @@ const LaunchesView = () => {
   
   const dispatch = useDispatch();
   const launchCollection = useSelector(state => (state.launchCollection))
+  const [expanded, setExpanded] = useState(false);
   
   useEffect(() => {
     dispatch(fetchLaunchesIfNeeded({ launchCollection }));
   }, []);
+
+  const handleChange = (name) => {
+    setExpanded(expanded === name ? "" : name);
+  };
 
   const renderContent = () => {
 
@@ -28,8 +33,10 @@ const LaunchesView = () => {
       <ul>
         {launchCollection.launches.map((launch, index) => (
           <Launch {...{
-            key: launch.launch_id,
-            launch
+            key: launch.mission_name,
+            expanded: expanded === launch.mission_name,
+            handleChange,
+            launch,
           }} />
         ))}
       </ul>
