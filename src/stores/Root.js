@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import launchCollection from './LaunchCollectionReducer';
 import thunk from 'redux-thunk';
+import launchCollection from './LaunchCollectionReducer';
+import rocketCollection from './RocketCollectionReducer';
 
 const rootReducer = combineReducers({
-  launchCollection
+  launchCollection,
+  rocketCollection
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

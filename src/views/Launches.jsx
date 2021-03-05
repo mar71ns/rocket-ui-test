@@ -2,19 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/LaunchesActions";
+import { fetchLaunchesIfNeeded, fetchRocketsIfNeeded } from "../actions";
+// import {fetchLaunchesIfNeeded} from "../actions/LaunchesActions";
 import Launch from '../components/Launch';
 
 const LaunchesView = () => {
   
   const dispatch = useDispatch();
   const launchCollection = useSelector(state => (state.launchCollection))
+  const rocketCollection = useSelector(state => (state.rocketCollection))
   const [expanded, setExpanded] = useState(false);
   
   useEffect(() => {
     dispatch(fetchLaunchesIfNeeded({ launchCollection }));
+    dispatch(fetchRocketsIfNeeded({ rocketCollection }));
   }, []);
-
+  console.log({rocketCollection});
   const handleChange = (name) => {
     setExpanded(expanded === name ? "" : name);
   };
