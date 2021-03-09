@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import Accordion from '@material-ui/core/Accordion';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,7 +12,6 @@ import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '90%',
     marginBottom: 20
   },
   chipWrapper: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const Launch = ({ launch, expanded, handleChange}) => {
 
   const classes = useStyles();
-  const date = new Date(launch.launch_date_unix * 1000).toLocaleDateString("en-US");
+  const date = new Date(launch.launch_date_unix * 1000).toLocaleDateString('en-US');
   const imageURL = launch.links.flickr_images.length > 0 ? launch.links.flickr_images[0] : launch.links.mission_patch;  
   const rocket = useSelector(state => (state.rocketCollection.rockets.find(item => item.rocket_id === launch.rocket.rocket_id)));
   const costPerLaunch = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0}).format(rocket.cost_per_launch);
@@ -50,22 +49,22 @@ const Launch = ({ launch, expanded, handleChange}) => {
             expandIcon={<ExpandMoreIcon />}
             id={launch.mission_name}
           >
-            <Typography style={{ color:"#aaa"}} variant="h4" >#{launch.flight_number}</Typography>
-            <Avatar style={{marginInline: 15}} alt="Remy Sharp" src={launch.links.mission_patch_small} />
-            <Typography variant="h4" >{launch.mission_name}</Typography>
+            <Typography style={{ color:'#aaa'}} variant='h4' >#{launch.flight_number}</Typography>
+            <Avatar style={{marginInline: 15}} alt='Remy Sharp' src={launch.links.mission_patch_small} />
+            <Typography variant='h4' >{launch.mission_name}</Typography>
           </AccordionSummary>
-          <AccordionDetails style={{flexDirection:"column"}}>
+          <AccordionDetails style={{flexDirection:'column'}}>
             <div className={classes.chipWrapper}>
-              <Chip color="primary" label={`Rocket ID: ${launch.rocket.rocket_id}`} />
+              <Chip color='primary' label={`Rocket ID: ${launch.rocket.rocket_id}`} />
               <Chip label={`Launch Cost: ${costPerLaunch}`} />
-              <Chip variant="outlined" label={`Lauch Date: ${date}`} />
-              <Chip variant="default" style={{ color:"#FFF", backgroundColor: launch.launch_success ? 'LimeGreen' : 'Crimson' }}  label={launch.launch_success ? "Mission sucedded" : "Mission failed"} />
+              <Chip variant='outlined' label={`Lauch Date: ${date}`} />
+              <Chip variant='default' style={{ color:'#FFF', backgroundColor: launch.launch_success ? 'LimeGreen' : 'Crimson' }}  label={launch.launch_success ? 'Launch sucedded' : 'Launch failed'} />
             </div>
             <Divider light />
               {rocket.description &&
                 <div className={classes.paragraph}>
-                  <Typography variant="h6">Rocket Description:</Typography>
-                      <Typography variant="body2" color="textSecondary">
+                  <Typography variant='h6'>Rocket Description:</Typography>
+                      <Typography variant='body2' color='textSecondary'>
                         {rocket.description}
                       </Typography>
                 </div>
@@ -73,9 +72,9 @@ const Launch = ({ launch, expanded, handleChange}) => {
               <Divider light />
               {launch.details &&
                 <div className={classes.paragraph}>
-                  <Typography variant="h6">Launch Details:</Typography>
+                  <Typography variant='h6'>Launch Details:</Typography>
 
-                      <Typography variant="body2" color="textSecondary">
+                      <Typography variant='body2' color='textSecondary'>
                         {launch.details}
                       </Typography>
 

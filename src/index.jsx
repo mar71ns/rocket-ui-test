@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import Routes from './routes';
 
-import "styles/base/_main.sass"  // Global styles
-import "styles/base/_common.sass"  // Global styles
-import "styles/_style.sass"  // Css-module styles
+import 'styles/base/_main.sass'  // Global styles
+import 'styles/base/_common.sass'  // Global styles
+import 'styles/_style.sass'  // Css-module styles
 
 
-import store from "./stores/Root";
+import store from './stores/Root';
 
 const routes = require('./routes');
 

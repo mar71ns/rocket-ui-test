@@ -2,7 +2,7 @@ import * as ACTIONS  from '../actions/Types';
 
 const initialState = {
   launches: [],
-  fetching: false
+  fetching: false,  
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
     case ACTIONS.REQUEST_LAUNCHES:
       return { 
         ...state,
+        launches: [],
         fetching: true
       };
     case ACTIONS.RECEIVE_LAUNCHES:

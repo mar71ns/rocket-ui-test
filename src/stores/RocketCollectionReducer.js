@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
     case ACTIONS.REQUEST_ROCKETS:
       return { 
         ...state,
+        rockets: [],
         fetching: true
       };
     case ACTIONS.RECEIVE_ROCKETS:

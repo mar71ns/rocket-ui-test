@@ -12,8 +12,8 @@ const receiveRockets = response => ({
   }
 });
 
-const shouldFetchRockets = launchCollection => !launchCollection || !launchCollection.fetching;
-
+const shouldFetchRockets = rocketCollection => !rocketCollection || (rocketCollection.rockets.length === 0 && !rocketCollection.fetching);
+                        
 export const fetchRockets = () => {
   return (dispatch) => {
     dispatch(requestRockets());
@@ -21,7 +21,8 @@ export const fetchRockets = () => {
   }
 };
 
-export const fetchRocketsIfNeeded = ({ launchCollection }) => (dispatch) => {
-    dispatch(shouldFetchRockets(launchCollection) && fetchRockets());
+export const fetchRocketsIfNeeded = ({ rocketCollection }) => (dispatch) => {
+  if( shouldFetchRockets(rocketCollection) ){
+    return dispatch(fetchRockets());
   }
-
+}
